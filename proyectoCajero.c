@@ -5,9 +5,16 @@ int main(void)
 {
 	int i;
 
+	int numTarjeta;
+
 	int a;
 
-	VerificarTarjeta();
+
+	printf("Introduce el numero de la tarjeta para poder ser verificada ");
+
+	scanf("%i", &numTarjeta);
+
+	VerificarTarjeta(numTarjeta);
 
 	do
 	{

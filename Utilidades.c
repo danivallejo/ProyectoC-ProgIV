@@ -1,13 +1,52 @@
 #include "Utilidades.h"
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 
+void clearifneeded (char* str);
 
-void VerificarTarjeta()
+void VerificarTarjeta(int numTarjeta)
 {
+	FILE* fd;
+	fd = fopen("registro.txt", "r");
+	if (fd == NULL)
+	{
+		printf ("Archivo no encontrado \n");
+		//return -1;
+	}
 
+	char str [100];
 
+	while (fgets(str, 100, fd))
+	{
+		int d;
+		scanf(str, "%d", &d);
+
+		if(numTarjeta != d)
+		{
+
+		}
+		else
+		{
+		printf("Tarjeta verificada: %d\n", d);
+		}	
+	
+	clearifneeded(str);
+	}
+	//return 0;
 }
+
+void clearifneeded (char* str)
+{
+	if (str [strlen (str) - 1] != '\n')
+	{
+		int c;
+		while ((c = getchar ()) != EOF && c != '\n');
+	}
+}
+
+
 void SacarDinero(int importe)
 {
 

@@ -4,7 +4,7 @@
 
 
 
-void VerificarTarjeta();
+void VerificarTarjeta(int numTarjeta);
 void SacarDinero( int importe);
 void MeterDinero();
 void ConsultarSaldo();
