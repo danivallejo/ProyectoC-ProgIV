@@ -3,12 +3,11 @@
 
 int main(void)
 {
-	int i;
 
 	int numTarjeta;
+	int numTarjeta1;
 
-	int a;
-
+	int a, i;
 
 	printf("Introduce el numero de la tarjeta para poder ser verificada ");
 
@@ -26,24 +25,26 @@ int main(void)
 	switch(a)	
 	{
 	case 1: 
-	SacarDinero(i);
+	SacarDinero(numTarjeta, i);
 	break;
 	case 2:
-	MeterDinero();
+	MeterDinero(numTarjeta, i);
 	break;
 	case 3:
-	ConsultarSaldo();
+	ConsultarSaldo(numTarjeta);
 	break;
 	case 4:
-	ConsultarMovimiento();
+	ConsultarMovimiento(numTarjeta);
 	break;
 	case 5:
-	Transferencia();
+	Transferencia(numTarjeta, numTarjeta1);
 	case 6:
 	Salir();
 	break;
 	}
 	}while(a > 6 || a < 1);
+
+
 
 	return 0;
 }

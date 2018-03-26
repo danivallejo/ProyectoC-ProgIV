@@ -4,7 +4,8 @@
 #include <stdlib.h>
 
 
-void clearifneeded (char* str);
+void clearifneeded (char* str, FILE* fd);
+
 
 void VerificarTarjeta(int numTarjeta)
 {
@@ -16,104 +17,94 @@ void VerificarTarjeta(int numTarjeta)
 		//return -1;
 	}
 
-	char str [100];
+	char str [40];
 
-	while (fgets(str, 100, fd))
+	while (fgets(str, 20, fd))
 	{
 		int d;
-		scanf(str, "%d", &d);
+		sscanf(str, "%d", &d);
 
 		if(numTarjeta != d)
 		{
-
+		printf("La tarjeta introducida es erronea: %d\n", numTarjeta);
+		break;
 		}
 		else
 		{
-		printf("Tarjeta verificada: %d\n", d);
+		printf("Tarjeta valida: %d\n. Verificar contrasenya.", numTarjeta);
+		VerificarContrasenya(numTarjeta);
 		}	
 	
-	clearifneeded(str);
+	clearifneeded(str, fd);
 	}
 	//return 0;
 }
 
-void clearifneeded (char* str)
+
+void VerificarContrasenya(int numTarjeta)
 {
-	if (str [strlen (str) - 1] != '\n')
-	{
-		int c;
-		while ((c = getchar ()) != EOF && c != '\n');
-	}
-}
+	int PIN;
 
-
-void SacarDinero(int importe)
-{
-
-int c = 100;
-int l = 50;
-int xx = 20;
-int x = 10;
-int v = 5;
-
-
- 
-printf("Seleccione el importe que desea retirar: " , importe);
-
-
- if(importe = c, l, xx, x, v)
- {
- 	printf("Billete de: %i", importe);
- }
- else
- {
- int dif;
- int eleccion;
- 	do
- 	{
- 	switch(eleccion)
- 	{
- 	case 5: 
- 		dif= importe- v;
- 		break;
- 	case 10:
- 		dif= importe- x;
- 		break;
- 	case 20:
- 		dif= importe- xx;
- 		break;
- 	case 50:
- 		dif= importe- l;
- 		break;
- 	case 100:
- 		dif = importe- c;
- 		break; 
- 	default:
- 		break;
- 	}
+	FILE* fd;
 	
+	printf("Introduce el PIN: ");
 
- 	if(dif = c, l, xx, x, v)
- 	{
- 	printf("Otro billete de: " , dif);
- 	}
+	scanf("%d", PIN);
 
- 	}while(importe = eleccion + dif);
- }
+	fd = fopen("registro.txt", "r");
+
+	if (fd == NULL)
+	{
+		printf ("Archivo no encontrado \n");
+		//return -1;
+	}
+
+	char str [40];
+
+	while (fgets(str, 20, fd))
+	{
+		int d;
+		sscanf(str, "%d", &d);
+
+		if(numTarjeta != d)
+		{
+		printf("El PIN introducido en incorrecto: %d\n", d);
+		break;
+		}
+		else
+		{
+		printf("Tarjeta verificada: %d\n", d);
+				
+		}	
+	
+	clearifneeded(str, fd);
+	}
+
+
+
+
 }
-void MeterDinero()
+
+void sacarDinero(int numTarjeta, int importe)
+{
+printf("Seleccione el importe que desea retirar: ");
+
+scanf("%d", &importe);
+
+}
+void MeterDinero(int numTarjeta, int importe)
 {
 
 }
-void ConsultarSaldo()
+void ConsultarSaldo(int numTarjeta)
 {
 
 }
-void ConsultarMovimiento()
+void ConsultarMovimiento(int numTarjeta)
 {
 
 }
-void Transferencia()
+void Transferencia(int numTarjeta, int numTarjeta1)
 {
 
 }
@@ -121,6 +112,16 @@ void Salir()
 {
 
 }
+
+void clearifneeded (char* str, FILE* fd)
+{
+	if (str [strlen (str) - 1] != '\n')
+	{
+		int c;
+		while ((c = fgetc (fd)) != EOF && c != '\n');
+	}
+}
+
 
 
  
