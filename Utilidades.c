@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 
-void clearifneeded (char* str);
+void clearifneeded (char* str, FILE* f);
 
 void VerificarTarjeta(int numTarjeta)
 {
@@ -32,17 +32,17 @@ void VerificarTarjeta(int numTarjeta)
 		printf("Tarjeta verificada: %d\n", d);
 		}	
 	
-	clearifneeded(str);
+	clearifneeded(str, fd);
 	}
 	//return 0;
 }
 
-void clearifneeded (char* str)
+void clearifneeded (char* str, FILE* fd)
 {
 	if (str [strlen (str) - 1] != '\n')
 	{
 		int c;
-		while ((c = getchar ()) != EOF && c != '\n');
+		while ((c = fgetc (fd)) != EOF && c != '\n');
 	}
 }
 

@@ -21,7 +21,7 @@ int main(void)
 
 	*PIN = getchar();
 
-	VerificarContrasenya(PIN);
+	//VerificarContrasenya(PIN);
 
 	do
 	{
