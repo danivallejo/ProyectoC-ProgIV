@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 
-void clearifneeded (char* str, FILE* fd);
 
+void clearifneeded (char* str, FILE* f);
 
 void VerificarTarjeta(int numTarjeta)
 {
@@ -39,7 +39,6 @@ void VerificarTarjeta(int numTarjeta)
 	}
 	//return 0;
 }
-
 
 void VerificarContrasenya(int numTarjeta)
 {

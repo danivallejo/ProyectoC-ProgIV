@@ -7,13 +7,22 @@ int main(void)
 	int numTarjeta;
 	int numTarjeta1;
 
-	int a, i;
+	int a;
+
+	char* PIN;
+
 
 	printf("Introduce el numero de la tarjeta para poder ser verificada ");
 
 	scanf("%i", &numTarjeta);
 
 	VerificarTarjeta(numTarjeta);
+
+	printf("Introduce el PIN de la tarjeta para poder ser verificada ");
+
+	*PIN = getchar();
+
+	//VerificarContrasenya(PIN);
 
 	do
 	{
