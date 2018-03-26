@@ -19,6 +19,10 @@ void VerificarTarjeta(int numTarjeta)
 
 	char str [40];
 
+	const char s[2] = ",";
+
+	char * token;
+
 	while (fgets(str, 20, fd))
 	{
 		int d;
@@ -29,10 +33,10 @@ void VerificarTarjeta(int numTarjeta)
 		printf("La tarjeta introducida es erronea: %d\n", numTarjeta);
 		break;
 		}
-		else
+		else if(numTarjeta = d)
 		{
+		token  = strtok (str, s);
 		printf("Tarjeta valida: %d\n. Verificar contrasenya.", numTarjeta);
-		VerificarContrasenya(numTarjeta);
 		}	
 	
 	clearifneeded(str, fd);
@@ -58,28 +62,31 @@ void VerificarContrasenya(int numTarjeta)
 		//return -1;
 	}
 
-	char str [40];
+	char str [20];
+	const char s[2] = ",";
+	
+	char * token;
+
+	//token  = strtok (str, s);
+
 
 	while (fgets(str, 20, fd))
 	{
 		int d;
 		sscanf(str, "%d", &d);
 
-		if(numTarjeta != d)
-		{
-		printf("El PIN introducido en incorrecto: %d\n", d);
-		break;
-		}
-		else
-		{
-		printf("Tarjeta verificada: %d\n", d);
-				
-		}	
 	
+		while (token != NULL)
+		{
+			if (token = PIN)
+			{
+			printf ( "%s\n", token);
+			token = strtok (NULL, s - 1);
+			}
+		}
+
+	}	
 	clearifneeded(str, fd);
-	}
-
-
 
 
 }
@@ -89,8 +96,8 @@ void sacarDinero(int numTarjeta, int importe)
 printf("Seleccione el importe que desea retirar: ");
 
 scanf("%d", &importe);
-
 }
+
 void MeterDinero(int numTarjeta, int importe)
 {
 
