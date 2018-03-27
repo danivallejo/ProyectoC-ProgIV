@@ -10,7 +10,13 @@ void clearifneeded (char* str, FILE* f);
 void VerificarTarjeta(int numTarjeta)
 {
 	FILE* fd;
+
+	t_tarjeta * t;
+	int num_lines = 0;
+	char c;
+
 	fd = fopen("registro.txt", "r");
+
 	if (fd == NULL)
 	{
 		printf ("Archivo no encontrado \n");
@@ -22,6 +28,14 @@ void VerificarTarjeta(int numTarjeta)
 	const char s[2] = ",";
 
 	char * token;
+
+	while (c = fgetc(fd) != EOF)
+	{
+		if (c == '\n')
+			num_lines++;
+	}
+
+	t = (t_tarjeta*) malloc (num_lines * sizeof (t_tarjeta));
 
 	while (fgets(str, 20, fd))
 	{
@@ -96,6 +110,15 @@ void sacarDinero(int numTarjeta, int importe)
 printf("Seleccione el importe que desea retirar: ");
 
 scanf("%d", &importe);
+
+if (importe>1000)
+{
+	printf ("Por motivos de seguridad no se pueden sacar mas de mil euros");
+}
+else
+{
+	printf ("Ha retirado: %d€", importe );
+}
 }
 
 void MeterDinero(int numTarjeta, int importe)
