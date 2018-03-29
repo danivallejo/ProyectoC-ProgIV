@@ -1,8 +1,13 @@
-#include "Utilidades.h"
+#include "Tarjeta.h"
+#include "Movimiento.h"
+
 #include <stdio.h>
 
 int main(void)
 {
+
+	t_tarjeta t;
+	t_movimiento m;
 
 	int numTarjeta;
 	int numTarjeta1;
@@ -32,28 +37,34 @@ int main(void)
 
 	switch(a)	
 	{
-
 	case 1:
-	AltaTarjeta();
+	AltaTarjeta(&t);
+	break;
 	case 2: 
-	SacarDinero(numTarjeta, i);
+	VerificarTarjeta(&t);
 	break;
 	case 3:
-	MeterDinero(numTarjeta, i);
+	VerificarContrasenya(&t);
 	break;
 	case 4:
-	ConsultarSaldo(numTarjeta);
+	SacarDinero(&m);
 	break;
 	case 5:
-	ConsultarMovimiento(numTarjeta);
+	MeterDinero(&m);
 	break;
 	case 6:
-	Transferencia(numTarjeta, numTarjeta1);
+	ConsultarSaldo(&t);
+	break;
 	case 7:
+	ConsultarMovimiento(&m);
+	break;
+	case 8:
+	Transferencia(&m);
+	case 9:
 	Salir();
 	break;
 	}
-	}while(a > 7 || a < 1);
+	}while(a > 9 || a < 1);
 
 
 

@@ -1,40 +1,100 @@
-#include "Utilidades.h"
+#include "Tarjeta.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
-
+#define NUM 1
 
 void clearifneeded (char* str, FILE* fd);
 
-void AltaTarjeta ()
+void AltaTarjeta (t_tarjeta *t)
 {
 	int numTarjeta;
 	int PIN;
+	int saldo = 0;
 
 	FILE* fd;
 
-	printf("Introduce el número de tu nueva tarjeta \n");
-	scanf ("%d", numTarjeta);
+	printf("Registra el numero de tu nueva tarjeta \n");
+	scanf ("%d", &numTarjeta);
 
-	printf("Introduce el PIN de tu nueva tarjeta \n");
-	scanf ("%d", PIN);
+	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
+	scanf ("%d", &PIN);
 
 	fd = fopen("registro.dat", "wb");
-	{
-		
-	}
+
+	(*t).numTarjeta = numTarjeta;
+	(*t).Password = PIN;
+	(*t).Saldo = saldo;
+
+	fputc(NUM, fd);
+
+	fwrite(t, sizeof(t_tarjeta), NUM, fd);
+
+	//fclose(fd);
 }
 
-void VerificarTarjeta(int numTarjeta)
+void VerificarTarjeta(t_tarjeta *t)
 {
-	FILE* fd;
+  FILE * fd;
+  int numTarjeta;	
+  int num;
+  int i;
+  char *w;
 
-	t_tarjeta * t;
+  fd = fopen("registro.dat", "rb");
+	
+  //leer la cantidad de elementos
+  num = fgetc(fd);
+  
+  printf("Introduce el numero de la tarjeta \n");
+  scanf ("%d", &numTarjeta);
+
+  //crear memoria para guardar los datos
+  t = (t_tarjeta*)malloc(NUM * sizeof(t_tarjeta));	
+  
+  if(numTarjeta = (*t).numTarjeta)
+  {
+  //leer los datos binarios al array
+  fread(t, sizeof(t_tarjeta), NUM, fd);
+  printf("La tarjeta %d se encuentra en nuestros servidores\n", numTarjeta);
+  }
+  //imprimir los puntos
+  //for (i = 0; i < num; i++)
+    //{
+      //print(&t[i]);
+      //printf("\n");
+    //}
+
+  //leer la longitud de la cadena de char
+  //num = fgetc(fd);
+  //reservar memoria
+  //w = (char*)malloc((num + 1) * sizeof(char));
+  //leer los datos de la cadena
+  //fread(w, sizeof(char), num, file);
+  //poner el \0 que falta
+  //w[num] = '\0';
+
+  //cerrar el fichero
+  fclose(fd);
+
+  //imprimir la cadena
+  //printf("%s\n", w);
+
+  //liberar
+  free(t);
+  //free(w);	
+
+   //return 0;
+}
+ 
+	/*FILE* fd;
+
 	int num_lines = 0;
 	char c;
 
-	fd = fopen("registro.txt", "r");
+	fd = fopen("registro.dat", "rb");
 
 	if (fd == NULL)
 	{
@@ -76,10 +136,10 @@ void VerificarTarjeta(int numTarjeta)
 	}
 	//return 0;
 }
-
-void VerificarContrasenya(int numTarjeta)
+*/
+void VerificarContrasenya(t_tarjeta *t)
 {
-	int PIN;
+/*	int PIN;
 
 	FILE* fd;
 	
@@ -121,38 +181,10 @@ void VerificarContrasenya(int numTarjeta)
 	}	
 	clearifneeded(str, fd);
 
-
+*/
 }
 
-void sacarDinero(int numTarjeta, int importe)
-{
-printf("Seleccione el importe que desea retirar: ");
-
-scanf("%d", &importe);
-
-if (importe>1000)
-{
-	printf ("Por motivos de seguridad no se pueden sacar mas de mil euros");
-}
-else
-{
-	printf ("Ha retirado: %d€", importe );
-}
-}
-
-void MeterDinero(int numTarjeta, int importe)
-{
-
-}
-void ConsultarSaldo(int numTarjeta)
-{
-
-}
-void ConsultarMovimiento(int numTarjeta)
-{
-
-}
-void Transferencia(int numTarjeta, int numTarjeta1)
+void ConsultarSaldo(t_tarjeta *t)
 {
 
 }
@@ -160,7 +192,6 @@ void Salir()
 {
 
 }
-
 void clearifneeded (char* str, FILE* fd)
 {
 	if (str [strlen (str) - 1] != '\n')

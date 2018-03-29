@@ -3,15 +3,16 @@
 
 typedef struct
 {
-	char [4] numTarjeta;
+	int numTarjeta;
+	int numTarjeta2;
 	char TipoMovimiento;
 	int Cantidad;
-	char [4] numTarjeta2;
+	
 } t_movimiento; 
 
-void ConsultarMovimiento(t_movimiento a);
-void Transferencia(t_movimiento a);
-void SacarDinero(t_movimiento a);
-void MeterDinero(t_movimiento a);
+void ConsultarMovimiento(t_movimiento *a);
+void Transferencia(t_movimiento *a);
+void SacarDinero(t_movimiento *a);
+void MeterDinero(t_movimiento *a);
                                                           
 #endif

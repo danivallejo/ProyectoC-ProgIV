@@ -3,15 +3,15 @@
 
 typedef struct
 {
-	char [4] numTarjeta;
-	int [4] Password;
+	int numTarjeta;
+	int Password;
 	int Saldo;
 }t_tarjeta; 
 
-void AltaTarjeta();
-void VerificarTarjeta(t_tarjeta a);
-void VerificarConstrasenya(t_tarjeta a);
-void ConsultarSaldo(t_tarjeta a);
+void AltaTarjeta(t_tarjeta* t);
+void VerificarTarjeta(t_tarjeta *t);
+void VerificarContrasenya(t_tarjeta *t);
+void ConsultarSaldo(t_tarjeta *t);
 void Salir();
 
 #endif
