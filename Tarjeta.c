@@ -5,13 +5,14 @@
 
 
 
-void clearifneeded (char* str, FILE* f);
+void clearifneeded (char* str, FILE* fd);
 
-void AltaTarjeta (FILE* fd)
+void AltaTarjeta ()
 {
 	int numTarjeta;
 	int PIN;
 
+	FILE* fd;
 
 	printf("Introduce el número de tu nueva tarjeta \n");
 	scanf ("%d", numTarjeta);
@@ -19,13 +20,10 @@ void AltaTarjeta (FILE* fd)
 	printf("Introduce el PIN de tu nueva tarjeta \n");
 	scanf ("%d", PIN);
 
-	f = fopen("registro.dat", "wb")
+	fd = fopen("registro.dat", "wb");
 	{
 		
 	}
-
-
-
 }
 
 void VerificarTarjeta(int numTarjeta)
@@ -172,6 +170,3 @@ void clearifneeded (char* str, FILE* fd)
 	}
 }
 
-
-
- 

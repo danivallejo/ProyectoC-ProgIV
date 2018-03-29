@@ -7,9 +7,7 @@ int main(void)
 	int numTarjeta;
 	int numTarjeta1;
 
-	int a;
-
-	char* PIN;
+	int a, i;
 
 // ESTO LO HE QUITADO TRAS HABLAR CON CERRO
 
@@ -36,7 +34,7 @@ int main(void)
 	{
 
 	case 1:
-	AltaTarjeta;
+	AltaTarjeta();
 	case 2: 
 	SacarDinero(numTarjeta, i);
 	break;
