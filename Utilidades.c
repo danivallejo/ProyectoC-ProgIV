@@ -7,6 +7,27 @@
 
 void clearifneeded (char* str, FILE* f);
 
+void AltaTarjeta (FILE* fd)
+{
+	int numTarjeta;
+	int PIN;
+
+
+	printf("Introduce el número de tu nueva tarjeta \n");
+	scanf ("%d", numTarjeta);
+
+	printf("Introduce el PIN de tu nueva tarjeta \n");
+	scanf ("%d", PIN);
+
+	f = fopen("registro.dat", "wb")
+	{
+		
+	}
+
+
+
+}
+
 void VerificarTarjeta(int numTarjeta)
 {
 	FILE* fd;

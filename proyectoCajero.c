@@ -11,16 +11,17 @@ int main(void)
 
 	char* PIN;
 
+// ESTO LO HE QUITADO TRAS HABLAR CON CERRO
 
-	printf("Introduce el numero de la tarjeta para poder ser verificada ");
+	//printf("Introduce el numero de la tarjeta para poder ser verificada ");
 
-	scanf("%i", &numTarjeta);
+	//scanf("%i", &numTarjeta);
 
-	VerificarTarjeta(numTarjeta);
+	//VerificarTarjeta(numTarjeta);
 
-	printf("Introduce el PIN de la tarjeta para poder ser verificada ");
+	//printf("Introduce el PIN de la tarjeta para poder ser verificada ");
 
-	*PIN = getchar();
+	//*PIN = getchar();
 
 	//VerificarContrasenya(PIN);
 
@@ -33,25 +34,28 @@ int main(void)
 
 	switch(a)	
 	{
-	case 1: 
+
+	case 1:
+	AltaTarjeta;
+	case 2: 
 	SacarDinero(numTarjeta, i);
 	break;
-	case 2:
+	case 3:
 	MeterDinero(numTarjeta, i);
 	break;
-	case 3:
+	case 4:
 	ConsultarSaldo(numTarjeta);
 	break;
-	case 4:
+	case 5:
 	ConsultarMovimiento(numTarjeta);
 	break;
-	case 5:
-	Transferencia(numTarjeta, numTarjeta1);
 	case 6:
+	Transferencia(numTarjeta, numTarjeta1);
+	case 7:
 	Salir();
 	break;
 	}
-	}while(a > 6 || a < 1);
+	}while(a > 7 || a < 1);
 
 
 
