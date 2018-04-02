@@ -31,7 +31,7 @@ int main(void)
 	do
 	{
 
-	printf("Este es el menu principal. Seleccione la operacion que desee: ");
+	printf("\nEste es el menu principal. Seleccione la operacion que desee: ");
 
 	scanf("%i", &a);
 
