@@ -31,7 +31,8 @@ int main(void)
 	do
 	{
 
-	printf("\nEste es el menu principal. Seleccione la operacion que desee: ");
+	printf("\nEste es el menu principal. Seleccione la operacion que desee: ");/* \n 1. Alta Tarjeta \n 2. Introducir Tarjeta \n 3. Sacar Dinero \n
+	4. Ingresar Dinero \n 5. Consultar Saldo \n 6. Consultar Movimientos \n 7. Transferencia \n 8. Salir");*/
 
 	scanf("%i", &a);
 
@@ -44,27 +45,24 @@ int main(void)
 	VerificarTarjeta(&t);
 	break;
 	case 3:
-	VerificarContrasenya(&t);
-	break;
-	case 4:
 	SacarDinero(&m);
 	break;
-	case 5:
+	case 4:
 	MeterDinero(&m);
 	break;
-	case 6:
+	case 5:
 	ConsultarSaldo(&t);
 	break;
-	case 7:
+	case 6:
 	ConsultarMovimiento(&m);
 	break;
-	case 8:
+	case 7:
 	Transferencia(&m);
-	case 9:
+	case 8:
 	Salir();
 	break;
 	}
-	}while(a > 9 || a < 1);
+	}while(a > 8 || a < 1);
 
 
 
