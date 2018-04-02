@@ -9,10 +9,10 @@ int main(void)
 	t_tarjeta t;
 	t_movimiento m;
 
-	int numTarjeta;
-	int numTarjeta1;
+	char numTarjeta[10];
+	char numTarjeta1[10];
 
-	int a, i;
+	int a;
 
 // ESTO LO HE QUITADO TRAS HABLAR CON CERRO
 

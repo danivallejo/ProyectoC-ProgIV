@@ -11,20 +11,20 @@ void clearifneeded (char* str, FILE* fd);
 void AltaTarjeta (t_tarjeta *t)
 {
 
-	int numTarjeta;
+	char numTarjeta[10];
 	int PIN;
 	int saldo = 0;
 
 	FILE* fd;
 	printf("Registra el numero de tu nueva tarjeta \n");
-	scanf ("%d", &numTarjeta);
+	scanf ("%s", &numTarjeta);
 
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 	scanf ("%d", &PIN);
 	
 	fd = fopen("registro.dat", "r+b");
 
-	(*t).numTarjeta = numTarjeta;
+	(*t).numTarjeta[11] = numTarjeta[10];
 	(*t).Password = PIN;
 	(*t).Saldo = saldo;
 
@@ -38,7 +38,7 @@ void AltaTarjeta (t_tarjeta *t)
 void VerificarTarjeta(t_tarjeta *t)
 {
   FILE * fd;
-  int numTarjeta;	
+  char numTarjeta[10];	
   int FilasFichero;
   int i;
 
@@ -48,25 +48,27 @@ void VerificarTarjeta(t_tarjeta *t)
   FilasFichero = fgetc(fd);
   
   printf("Introduce el numero de la tarjeta: \n");
-  scanf ("%i", &numTarjeta);
+  scanf ("%s", &numTarjeta);
 
   //crear memoria para guardar los datos
   t = (t_tarjeta*)malloc(FilasFichero * sizeof(t_tarjeta));	
   
-  fread(t, sizeof(t_tarjeta), FilasFichero, fd);
  
-  	if((*t).numTarjeta == numTarjeta)
-  	{
-  	//leer los datos binarios al array
-  	printf("La tarjeta %i se encuentra en nuestros servidores\n", numTarjeta);
+  while (fgets((*t).numTarjeta, 11, fd))
+  {
+	fread(t, sizeof(t_tarjeta), FilasFichero, fd);
 
-  	//VERIFICAR PIN AQUI
-  	//print(&t);
-  	}
-  	else if((*t).numTarjeta != numTarjeta)
+  	(*t).numTarjeta[strlen((*t).numTarjeta-1)] ='\n';
+  	if(strcmp((*t).numTarjeta, numTarjeta) == 0)
   	{
-  	printf("La tarjeta %i no pertenece a nuestro banco\n", numTarjeta);
+  	printf("La tarjeta %s se encuentra en nuestros servidores\n", numTarjeta);
+  		//VERIFICAR PIN AQUI
   	}
+  	else if(strcmp((*t).numTarjeta, numTarjeta) !=0)
+  	{
+  	printf("La tarjeta %s no pertenece a nuestro banco\n", numTarjeta);
+  	}
+  }
   //cerrar el fichero
   fclose(fd);
 
@@ -87,8 +89,7 @@ void clearifneeded (char* str, FILE* fd)
 {
 	if (str [strlen (str) - 1] != '\n')
 	{
-		int c;
-		while ((c = fgetc (fd)) != EOF && c != '\n');
+		int c;		while ((c = fgetc (fd)) != EOF && c != '\n');
 	}
 }
 /*

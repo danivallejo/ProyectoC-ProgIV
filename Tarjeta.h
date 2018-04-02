@@ -3,7 +3,7 @@
 
 typedef struct
 {
-	int numTarjeta;
+	char numTarjeta[11];
 	int Password;
 	int Saldo;
 }t_tarjeta; 
