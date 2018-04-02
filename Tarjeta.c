@@ -22,7 +22,7 @@ void AltaTarjeta (t_tarjeta *t)
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 	scanf ("%d", &PIN);
 	
-	fd = fopen("registro.dat", "r+b");
+	fd = fopen("registro.dat", "ab");
 
 	(*t).numTarjeta[11] = numTarjeta[10];
 	(*t).Password = PIN;
@@ -58,7 +58,8 @@ void VerificarTarjeta(t_tarjeta *t)
   {
 	fread(t, sizeof(t_tarjeta), FilasFichero, fd);
 
-  	(*t).numTarjeta[strlen((*t).numTarjeta-1)] ='\n';
+  	
+    (*t).numTarjeta[strlen((*t).numTarjeta-1)] ='\n';
   	if(strcmp((*t).numTarjeta, numTarjeta) == 0)
   	{
   	printf("La tarjeta %s se encuentra en nuestros servidores\n", numTarjeta);

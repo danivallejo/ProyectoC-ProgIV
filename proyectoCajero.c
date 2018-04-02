@@ -45,7 +45,7 @@ int main(void)
 	VerificarTarjeta(&t);
 	break;
 	case 3:
-	SacarDinero(&m);
+	SacarDinero(&m, &t);
 	break;
 	case 4:
 	MeterDinero(&m);
