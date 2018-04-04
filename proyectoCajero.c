@@ -14,19 +14,31 @@ int main(void)
 
 	int a;
 
-// ESTO LO HE QUITADO TRAS HABLAR CON CERRO
+	do 
 
-	//printf("Introduce el numero de la tarjeta para poder ser verificada ");
+	{
+		printf("\n Este es el menu principal. Seleccione que operación desea realizar: 1. Alta Tarjeta. 2.Introducir Tarjeta. 3.Salir. \n");
 
-	//scanf("%i", &numTarjeta);
+		scanf ("%i", &a);
 
-	//VerificarTarjeta(numTarjeta);
+		switch (a)
+		{
+			case 1:
+			AltaTarjeta(&t);
+			break;
+			case 2: 
+			IntroducirTarjeta(&t);
+			break;
+			case 3:
+			Salir();
+			break;
+		}
 
-	//printf("Introduce el PIN de la tarjeta para poder ser verificada ");
+	}while(a > 3 || a < 1);
 
-	//*PIN = getchar();
 
-	//VerificarContrasenya(PIN);
+
+
 
 	do
 	{

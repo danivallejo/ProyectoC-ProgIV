@@ -5,8 +5,8 @@
 
 typedef struct
 {
-	char numTarjeta1[11];
-	char numTarjeta2[11];
+	char numTarjeta1[4];
+	char numTarjeta2[4];
 	char TipoMovimiento[15];
 	int Cantidad;
 	

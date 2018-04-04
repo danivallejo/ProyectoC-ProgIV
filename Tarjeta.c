@@ -10,76 +10,87 @@ void clearifneeded (char* str, FILE* fd);
 
 void AltaTarjeta (t_tarjeta *t)
 {
-
-	char numTarjeta[10];
+	int numeroTarjeta;
 	int PIN;
 	int saldo = 0;
+	t_tarjeta tarjeta;
 
 	FILE* fd;
 	printf("Registra el numero de tu nueva tarjeta \n");
-	scanf ("%s", &numTarjeta);
+	scanf ("%i", &numeroTarjeta);
 
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
-	scanf ("%d", &PIN);
+	scanf ("%i", &PIN);
 	
 	fd = fopen("registro.dat", "ab");
 
-	(*t).numTarjeta[11] = numTarjeta[10];
-	(*t).Password = PIN;
-	(*t).Saldo = saldo;
+	(*tarjeta).numeroTarjeta = numTarjeta;
+	(*tarjeta).Password = PIN;
+	(*tarjeta).Saldo = saldo;
 
 	fputc(MAX_NUM, fd);
 
-	fwrite(t, sizeof(t_tarjeta), MAX_NUM, fd);
+	fwrite(tarjeta, sizeof(t_tarjeta), MAX_NUM, fd);
 
 	fclose(fd);
 }
 
-void VerificarTarjeta(t_tarjeta *t)
+t_tarjeta* IntroducirTarjeta(t_tarjeta *t)
 {
   FILE * fd;
-  char numTarjeta[10];	
-  int FilasFichero;
+  char *w;
+  t_tarjeta *tarjetas;
+  int CantidadTarjetas;
   int i;
+
+  int numeroTarjeta
+  int PIN
 
   fd = fopen("registro.dat", "rb");
 	
   //leer la cantidad de elementos
-  FilasFichero = fgetc(fd);
+  CantidadTarjetas = fgetc(fd);
   
-  printf("Introduce el numero de la tarjeta: \n");
-  scanf ("%s", &numTarjeta);
-
   //crear memoria para guardar los datos
-  t = (t_tarjeta*)malloc(FilasFichero * sizeof(t_tarjeta));	
+  tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
   
+  //leer los datos del binario al array
  
-  while (fgets((*t).numTarjeta, 11, fd))
-  {
-	fread(t, sizeof(t_tarjeta), FilasFichero, fd);
+ 	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, fd);
 
-  	
-    (*t).numTarjeta[strlen((*t).numTarjeta-1)] ='\n';
-  	if(strcmp((*t).numTarjeta, numTarjeta) == 0)
-  	{
-  	printf("La tarjeta %s se encuentra en nuestros servidores\n", numTarjeta);
-  		//VERIFICAR PIN AQUI
-  	}
-  	else if(strcmp((*t).numTarjeta, numTarjeta) !=0)
-  	{
-  	printf("La tarjeta %s no pertenece a nuestro banco\n", numTarjeta);
-  	}
-  }
-  //cerrar el fichero
-  fclose(fd);
+    printf("\n Introduce el número de tu tarjeta \n");
+    scanf ("%i", &numeroTarjeta);
 
-  //liberar
-  free(t);
+    for (i = 0; i < CantidadTarjetas; i++)
+    {
+    	if (numeroTarjeta == tarjetas[i].numTarjeta)
+    	{
+    		printf ("\n Tu tarjeta está en los servidores, ahora introduce tu PIN \n")
+
+    		scanf ("%i", &PIN);
+
+    		if( PIN == tarjetas[i].Password)
+    		{
+    			printf ("\n ¡Tarjeta Introducida! \n")
+    		}else
+    		{
+    			printf("\n PIN INCORRECTO. \n")
+    		}
+
+    	}else
+    	{
+    		printf ("Lo sentimos, su tarjeta no aparece en nuestros servidores")
+    	}
+
+    }
 }
-
 
 void ConsultarSaldo(t_tarjeta *t)
 {
+	//RECIBIMOS LA TARJETA
+
+	printf ("Su saldo es de " saldo );
+
 
 }
 void Salir()
