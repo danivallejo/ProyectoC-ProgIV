@@ -10,7 +10,7 @@ typedef struct
 
 void AltaTarjeta(t_tarjeta *t);
 void IntroducirTarjeta(t_tarjeta *t);
-void ConsultarSaldo(t_tarjeta *t);
+void ConsultarSaldo(t_tarjeta TarjetaIntroducida)
 void Salir();
 //void print(t_tarjeta *t)
 

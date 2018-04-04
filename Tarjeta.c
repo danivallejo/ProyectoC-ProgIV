@@ -13,16 +13,47 @@ void AltaTarjeta (t_tarjeta *t)
 	int numeroTarjeta;
 	int PIN;
 	int saldo = 0;
+	int i;
+	int CantidadTarjetas;
+	int aux;
+	t_tarjeta *tarjetas;
 	t_tarjeta tarjeta;
 
 	FILE* fd;
-	printf("Registra el numero de tu nueva tarjeta \n");
-	scanf ("%i", &numeroTarjeta);
+
+	fd = fopen("registro.dat", "r+b");
+	 //leer la cantidad de elementos
+  	CantidadTarjetas = fgetc(fd);
+  
+  	//crear memoria para guardar los datos
+ 	 tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
+  
+  	//leer los datos del binario al array
+ 
+ 	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, fd);
+
+	
+ 		do
+		{
+			printf("Registra el número de tu nueva tarjeta \n");
+			scanf ("%i", &numeroTarjeta);
+
+			aux = 0;
+
+
+			for (i = 0; i < CantidadTarjetas; i++)
+ 			{
+ 				if(numeroTarjeta == tarjetas[i].numTarjeta)
+ 				{
+ 					printf("El número de tarjeta ya está registrado en el sistema \n");
+ 					aux = 1;
+ 				}
+			}
+		}while(aux = 1);
 
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 	scanf ("%i", &PIN);
 	
-	fd = fopen("registro.dat", "ab");
 
 	(*tarjeta).numeroTarjeta = numTarjeta;
 	(*tarjeta).Password = PIN;
@@ -35,7 +66,7 @@ void AltaTarjeta (t_tarjeta *t)
 	fclose(fd);
 }
 
-t_tarjeta* IntroducirTarjeta(t_tarjeta *t)
+ void IntroducirTarjeta(t_tarjeta *t)
 {
   FILE * fd;
   char *w;
@@ -72,6 +103,9 @@ t_tarjeta* IntroducirTarjeta(t_tarjeta *t)
     		if( PIN == tarjetas[i].Password)
     		{
     			printf ("\n ¡Tarjeta Introducida! \n")
+
+    			menu(tarjeta[i]);
+
     		}else
     		{
     			printf("\n PIN INCORRECTO. \n")
@@ -85,12 +119,13 @@ t_tarjeta* IntroducirTarjeta(t_tarjeta *t)
     }
 }
 
-void ConsultarSaldo(t_tarjeta *t)
+void ConsultarSaldo(t_tarjeta TarjetaIntroducida)
 {
-	//RECIBIMOS LA TARJETA
+	int saldo;
 
-	printf ("Su saldo es de " saldo );
+	saldo = TarjetaIntroducida.Saldo;
 
+	printf ("Su saldo es de %i", saldo );
 
 }
 void Salir()

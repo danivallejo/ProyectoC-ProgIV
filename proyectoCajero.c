@@ -17,7 +17,7 @@ int main(void)
 	do 
 
 	{
-		printf("\n Este es el menu principal. Seleccione que operación desea realizar: 1. Alta Tarjeta. 2.Introducir Tarjeta. 3.Salir. \n");
+		printf("\n Este es el menu principal. Seleccione que operación desea realizar:\n 1. Alta Tarjeta. 2.Introducir Tarjeta. 3.Salir. \n");
 
 		scanf ("%i", &a);
 
@@ -38,45 +38,39 @@ int main(void)
 
 
 
+int menu(t_tarjeta TarjetaIntroducida)
+{
 
+	int a;
 
 	do
 	{
 
-	printf("\nEste es el menu principal. Seleccione la operacion que desee: ");/* \n 1. Alta Tarjeta \n 2. Introducir Tarjeta \n 3. Sacar Dinero \n
-	4. Ingresar Dinero \n 5. Consultar Saldo \n 6. Consultar Movimientos \n 7. Transferencia \n 8. Salir");*/
+		printf("\nEste es el menu principal. Seleccione la operacion que desee:  \n 1. Sacar Dinero \n 2. Ingresar Dinero \n 3. Consultar Saldo \n 4. Consultar Movimientos \n 5. Transferencia \n 6. Salir");
 
 	scanf("%i", &a);
 
 	switch(a)	
 	{
 	case 1:
-	AltaTarjeta(&t);
+	SacarDinero(TarjetaIntroducida);
 	break;
-	case 2: 
-	VerificarTarjeta(&t);
-	break;
-	case 3:
-	SacarDinero(&m, &t);
-	break;
-	case 4:
+	case 2:
 	MeterDinero(&m);
 	break;
-	case 5:
-	ConsultarSaldo(&t);
+	case 3:
+	ConsultarSaldo(TarjetaIntroducida);
 	break;
-	case 6:
+	case 4:
 	ConsultarMovimiento(&m);
 	break;
-	case 7:
+	case 5:
 	Transferencia(&m);
-	case 8:
+	case 6:
 	Salir();
 	break;
 	}
-	}while(a > 8 || a < 1);
-
-
+	}while(a > 6 || a < 1);
 
 	return 0;
 }
