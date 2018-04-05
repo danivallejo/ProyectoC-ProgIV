@@ -12,7 +12,7 @@ typedef struct
 	
 } t_movimiento; 
 
-void ConsultarMovimiento(TarjetaIntroducida);
+void ConsultarMovimiento(t_tarjeta TarjetaIntroducida);
 void Transferencia(t_tarjeta TarjetaIntroducida);
 void SacarDinero(t_tarjeta TarjetaIntroducida);
 void MeterDinero(t_movimiento *m);

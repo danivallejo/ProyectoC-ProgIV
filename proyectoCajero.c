@@ -5,13 +5,6 @@
 
 int main(void)
 {
-
-	t_tarjeta t;
-	t_movimiento m;
-
-	char numTarjeta[10];
-	char numTarjeta1[10];
-
 	int a;
 
 	do 
@@ -24,10 +17,10 @@ int main(void)
 		switch (a)
 		{
 			case 1:
-			AltaTarjeta(&t);
+			AltaTarjeta();
 			break;
 			case 2: 
-			IntroducirTarjeta(&t);
+			IntroducirTarjeta();
 			break;
 			case 3:
 			Salir();
@@ -62,10 +55,10 @@ int menu(t_tarjeta TarjetaIntroducida)
 	ConsultarSaldo(TarjetaIntroducida);
 	break;
 	case 4:
-	ConsultarMovimiento(&m);
+	ConsultarMovimiento();
 	break;
 	case 5:
-	Transferencia(&m);
+	Transferencia();
 	case 6:
 	Salir();
 	break;

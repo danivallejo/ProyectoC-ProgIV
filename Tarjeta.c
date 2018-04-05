@@ -8,7 +8,7 @@
 
 void clearifneeded (char* str, FILE* fd);
 
-void AltaTarjeta (t_tarjeta *t)
+void AltaTarjeta ()
 {
 	int numeroTarjeta;
 	int PIN;
@@ -66,7 +66,7 @@ void AltaTarjeta (t_tarjeta *t)
 	fclose(fd);
 }
 
- void IntroducirTarjeta(t_tarjeta *t)
+ void IntroducirTarjeta()
 {
   FILE * fd;
   char *w;
