@@ -165,7 +165,27 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
 
 void ConsultarMovimiento()
 {
+	FILE* FicheroMov;
+	FILE* FicheroTar;
+	int importe;
+	int CantidadMovimientos;
+	t_tarjeta* tarjetas;
+	t_movimiento* Movimiento;
 
+	FicheroMov = fopen("Movimientos.dat", "ab");
+
+	FicheroTar = fopen ("registro.dat", "r+b");
+
+	CantidadTarjetas = fgetc(FicheroTar);
+  
+  	//crear memoria para guardar los datos
+ 	 tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
+ 	 Movimiento=(t_movimiento*)malloc(CantidadMovimientos*sizeof(t_movimiento));
+  
+  	//leer los datos del binario al array
+ 
+ 	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
+ 	fread(Movimiento, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
 
 }
 
