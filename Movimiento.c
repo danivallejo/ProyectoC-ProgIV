@@ -5,8 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-#define TIPO1 "Retira Dinero"
-#define TIPO2 "ingresar"
+#define TIPO1 "retirada"
+#define TIPO2 "ingreso"
 #define TIPO3 "transferencia"
 
 #define MAX_NUM 1
@@ -163,30 +163,34 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
  
 }
 
-void ConsultarMovimiento()
+void ConsultarMovimiento(t_tarjeta TarjetaIntroducida)
 {
 	FILE* FicheroMov;
-	FILE* FicheroTar;
 	int importe;
 	int CantidadMovimientos;
-	t_tarjeta* tarjetas;
-	t_movimiento* Movimiento;
+	int i;
+	t_movimiento* Movimientos;
 
-	FicheroMov = fopen("Movimientos.dat", "ab");
+	FicheroMov = fopen("Movimientos.dat", "rb");
 
-	FicheroTar = fopen ("registro.dat", "r+b");
-
-	CantidadTarjetas = fgetc(FicheroTar);
+	CantidadMovimientos = fgetc(FicheroMov);
   
   	//crear memoria para guardar los datos
- 	 tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
- 	 Movimiento=(t_movimiento*)malloc(CantidadMovimientos*sizeof(t_movimiento));
+ 	 Movimientos = (t_movimiento*)malloc(CantidadMovimientos*sizeof(t_movimiento));
   
   	//leer los datos del binario al array
- 
- 	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
- 	fread(Movimiento, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
+  	fread(Movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
 
+  	for(i = 0; i < CantidadMovimientos; i++ )
+  	{
+  		if(TarjetaIntroducida == Movimientos[i].numTarjeta1 || TarjetaIntroducida == Movimientos[i].numTarjeta2)
+  		{
+  			printf("\n La tarjeta %i ha realizado un/a %s por el importe de %i \n", Movimientos[i].numTarjeta1 Movimientos[i].TipoMovimiento Movimientos[i].Cantidad);
+  		}
+
+  	}
+
+  	fclose(FicheroMov);
 }
 
 void Transferencia(t_tarjeta TarjetaIntroducida)
