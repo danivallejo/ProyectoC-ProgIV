@@ -77,7 +77,8 @@ void SacarDinero(t_tarjeta TarjetaIntroducida)
 
 void MeterDinero(t_tarjeta TarjetaIntroducida)
 {
- 	//LEEMOS DE FICHERO EN UN ARRAY
+	//LEEMOS DE FICHERO EN UN ARRAY
+
 	FILE* FicheroMov;
 	FILE* FicheroTar;
 	int importe;
@@ -110,6 +111,31 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
  
 	Movimiento.numTarjeta1 = TarjetaIntroducida.numTarjeta;
  	Movimiento.TipoMovimiento[15] = TIPO2;
+	Movimiento.numTarjeta2 = NULL;
+	Movimiento.Cantidad = importe;
+	
+	fputc(MAX_NUM, FicheroMov);
+
+	fwrite(Movimiento, sizeof(t_movimiento), MAX_NUM, FicheroMov);
+
+	fclose(FicheroMov);
+
+	for(i = 0; i < CantidadTarjetas; i++)
+	{
+		if(TarjetaIntroducida.numTarjeta == tarjetas[i].numTarjeta)
+		{
+			tarjetas[i].Saldo = tarjetas[i].Saldo + importe;
+		}
+	}
+
+	fputc(CantidadTarjetas, FicheroTar);
+
+	printf ("Ha ingresado: %d€", importe);
+
+	//Modificamos el fichero
+
+	Movimiento.numTarjeta1 = TarjetaIntroducida.numTarjeta;
+ 	Movimiento.TipoMovimiento[15] = TIPO1;
 	Movimiento.numTarjeta2 = NULL;
 	Movimiento.Cantidad = importe;
 	
