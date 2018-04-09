@@ -39,7 +39,7 @@ int menu(t_tarjeta TarjetaIntroducida)
 	do
 	{
 
-		printf("\nEste es el menu principal. Seleccione la operacion que desee:  \n 1. Sacar Dinero \n 2. Ingresar Dinero \n 3. Consultar Saldo \n 4. Consultar Movimientos \n 5. Transferencia \n 6. Salir");
+	printf("\nEste es el menu principal. Seleccione la operacion que desee:  \n 1. Sacar Dinero \n 2. Ingresar Dinero \n 3. Consultar Saldo \n 4. Consultar Movimientos \n 5. Transferencia \n 6. Salir");
 
 	scanf("%i", &a);
 
@@ -49,16 +49,16 @@ int menu(t_tarjeta TarjetaIntroducida)
 	SacarDinero(TarjetaIntroducida);
 	break;
 	case 2:
-	MeterDinero(&m);
+	MeterDinero(TarjetaIntroducida);
 	break;
 	case 3:
 	ConsultarSaldo(TarjetaIntroducida);
 	break;
 	case 4:
-	ConsultarMovimiento();
+	ConsultarMovimiento(TarjetaIntroducida);
 	break;
 	case 5:
-	Transferencia();
+	Transferencia(TarjetaIntroducida);
 	case 6:
 	Salir();
 	break;
@@ -66,4 +66,6 @@ int menu(t_tarjeta TarjetaIntroducida)
 	}while(a > 6 || a < 1);
 
 	return 0;
+}
+return 0;
 }

@@ -9,12 +9,11 @@ typedef struct
 	int numTarjeta2;
 	char TipoMovimiento[15];
 	int Cantidad;
-	
-} t_movimiento; 
+
+} t_movimiento;
 
 void ConsultarMovimiento(t_tarjeta TarjetaIntroducida);
 void Transferencia(t_tarjeta TarjetaIntroducida);
 void SacarDinero(t_tarjeta TarjetaIntroducida);
-void MeterDinero(t_movimiento *m);
-                                                          
+void MeterDinero(t_tarjeta TarjetaIntroducida);
 #endif
