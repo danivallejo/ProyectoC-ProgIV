@@ -6,7 +6,7 @@ typedef struct
 	int numTarjeta;
 	int Password;
 	int Saldo;
-}t_tarjeta; 
+} t_tarjeta;
 
 
 int menu(t_tarjeta TarjetaIntroducida);
