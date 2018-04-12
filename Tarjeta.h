@@ -1,5 +1,6 @@
 #ifndef _TARJETA_H
 #define _TARJETA_H
+
 typedef struct
 {
 	int numTarjeta;
@@ -7,6 +8,7 @@ typedef struct
 	int Saldo;
 } t_tarjeta;
 
+int menu(t_tarjeta TarjetaIntroducida);
 void AltaTarjeta();
 void IntroducirTarjeta();
 void ConsultarSaldo(t_tarjeta TarjetaIntroducida);

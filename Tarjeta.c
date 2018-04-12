@@ -17,7 +17,7 @@ void AltaTarjeta ()
 	int CantidadTarjetas;
 	int aux;
 	t_tarjeta *tarjetas;
-	t_tarjeta tarjeta;
+	t_tarjeta *tarjeta;
 
 	FILE* fd;
 
@@ -55,7 +55,7 @@ void AltaTarjeta ()
 	scanf ("%i", &PIN);
 	
 
-	(*tarjeta).numeroTarjeta = numTarjeta;
+	(*tarjeta).numTarjeta = numeroTarjeta;
 	(*tarjeta).Password = PIN;
 	(*tarjeta).Saldo = saldo;
 
@@ -69,13 +69,13 @@ void AltaTarjeta ()
  void IntroducirTarjeta()
 {
   FILE * fd;
-  char *w;
+  //char *w;
   t_tarjeta *tarjetas;
   int CantidadTarjetas;
   int i;
 
-  int numeroTarjeta
-  int PIN
+  int numeroTarjeta;
+  int PIN;
 
   fd = fopen("registro.dat", "rb");
 	
@@ -96,24 +96,24 @@ void AltaTarjeta ()
     {
     	if (numeroTarjeta == tarjetas[i].numTarjeta)
     	{
-    		printf ("\n Tu tarjeta está en los servidores, ahora introduce tu PIN \n")
+    		printf ("\n Tu tarjeta está en los servidores, ahora introduce tu PIN \n");
 
     		scanf ("%i", &PIN);
 
     		if( PIN == tarjetas[i].Password)
     		{
-    			printf ("\n ¡Tarjeta Introducida! \n")
+    			printf ("\n ¡Tarjeta Introducida! \n");
 
-    			menu(tarjeta[i]);
+    			menu(tarjetas[i]);
 
     		}else
     		{
-    			printf("\n PIN INCORRECTO. \n")
+    			printf("\n PIN INCORRECTO. \n");
     		}
 
     	}else
     	{
-    		printf ("Lo sentimos, su tarjeta no aparece en nuestros servidores")
+    		printf ("Lo sentimos, su tarjeta no aparece en nuestros servidores");
     	}
 
     }

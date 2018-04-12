@@ -49,16 +49,16 @@ int menu(t_tarjeta TarjetaIntroducida)
 	SacarDinero(TarjetaIntroducida);
 	break;
 	case 2:
-	MeterDinero(&m);
+	MeterDinero(TarjetaIntroducida);
 	break;
 	case 3:
 	ConsultarSaldo(TarjetaIntroducida);
 	break;
 	case 4:
-	ConsultarMovimiento();
+	ConsultarMovimiento(TarjetaIntroducida);
 	break;
 	case 5:
-	Transferencia();
+	Transferencia(TarjetaIntroducida);
 	case 6:
 	Salir();
 	break;
@@ -66,4 +66,6 @@ int menu(t_tarjeta TarjetaIntroducida)
 	}while(a > 6 || a < 1);
 
 	return 0;
+}
+return 0;
 }
