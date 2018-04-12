@@ -8,6 +8,44 @@
 
 void clearifneeded (char* str, FILE* fd);
 
+
+
+int menu(t_tarjeta TarjetaIntroducida)
+{
+
+	int a;
+
+	do
+	{
+
+	printf("\nEste es el menu principal. Seleccione la operacion que desee:  \n 1. Sacar Dinero \n 2. Ingresar Dinero \n 3. Consultar Saldo \n 4. Consultar Movimientos \n 5. Transferencia \n 6. Salir");
+
+	scanf("%i", &a);
+
+	switch(a)	
+	{
+	case 1:
+	SacarDinero(TarjetaIntroducida);
+	break;
+	case 2:
+	MeterDinero(TarjetaIntroducida);
+	break;
+	case 3:
+	ConsultarSaldo(TarjetaIntroducida);
+	break;
+	case 4:
+	ConsultarMovimiento(TarjetaIntroducida);
+	break;
+	case 5:
+	Transferencia(TarjetaIntroducida);
+	case 6:
+	Salir();
+	break;
+	}
+	}while(a > 6 || a < 1);
+
+	return 0;
+}
 void AltaTarjeta ()
 {
 	int numeroTarjeta;
@@ -17,7 +55,7 @@ void AltaTarjeta ()
 	int CantidadTarjetas;
 	int aux;
 	t_tarjeta *tarjetas;
-	t_tarjeta *tarjeta;
+	//t_tarjeta *tarjeta;
 
 	FILE* fd;
 
@@ -31,14 +69,14 @@ void AltaTarjeta ()
   	//leer los datos del binario al array
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, fd);
-
-	
- 		do
+ 		
+ 	/*	do
 		{
-			printf("Registra el número de tu nueva tarjeta \n");
-			scanf ("%i", &numeroTarjeta);
-
-			aux = 0;
+	*/
+		printf("Registra el número de tu nueva tarjeta \n");
+		scanf ("%i", &numeroTarjeta);
+	/*		
+		aux = 0;
 
 
 			for (i = 0; i < CantidadTarjetas; i++)
@@ -50,20 +88,22 @@ void AltaTarjeta ()
  				}
 			}
 		}while(aux = 1);
-
+*/
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 	scanf ("%i", &PIN);
 	
 
-	(*tarjeta).numTarjeta = numeroTarjeta;
-	(*tarjeta).Password = PIN;
-	(*tarjeta).Saldo = saldo;
+	(*tarjetas).numTarjeta = numeroTarjeta;
+	(*tarjetas).Password = PIN;
+	(*tarjetas).Saldo = saldo;
 
 	fputc(MAX_NUM, fd);
 
-	fwrite(tarjeta, sizeof(t_tarjeta), MAX_NUM, fd);
+	fwrite(tarjetas, sizeof(t_tarjeta), MAX_NUM, fd);
 
 	fclose(fd);
+
+	//free(tarjetas);
 }
 
  void IntroducirTarjeta()
