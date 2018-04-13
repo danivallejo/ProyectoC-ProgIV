@@ -81,29 +81,28 @@ void AltaTarjeta ()
  	fclose(fd);
 
  	fd = fopen("registro.dat", "wb");
- 	/*	do
+ 		do
 		{
-	*/
+	
 		printf("Registra el número de tu nueva tarjeta \n");
 		scanf ("%i", &tarjeta.numTarjeta);
 		
 		printf ("%i\n", tarjeta.numTarjeta);
 
-
-	/*		
+	
 		aux = 0;
 
 
 			for (i = 0; i < CantidadTarjetas; i++)
  			{
- 				if(numeroTarjeta == tarjetas[i].numTarjeta)
+ 				if(tarjeta.numTarjeta == tarjetas[i].numTarjeta)
  				{
  					printf("El número de tarjeta ya está registrado en el sistema \n");
  					aux = 1;
  				}
 			}
-		}while(aux = 1);
-*/
+		}while(aux == 1);
+
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 
 	scanf ("%i", &tarjeta.Password);
