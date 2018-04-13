@@ -8,12 +8,10 @@ typedef struct
 	int Saldo;
 } t_tarjeta;
 
-
-int menu(t_tarjeta TarjetaIntroducida);
 void AltaTarjeta();
 void IntroducirTarjeta();
 void ConsultarSaldo(t_tarjeta TarjetaIntroducida);
-void Salir();
+void Salir(t_tarjeta TarjetaIntroducida);
 //void print(t_tarjeta *t)
 
 #endif

@@ -8,6 +8,8 @@ int main(void)
 	printf("Empezamos\n");
 	int a;
 
+	t_tarjeta TarjetaIntroducida;
+
 	do 
 
 	{
@@ -24,7 +26,7 @@ int main(void)
 			IntroducirTarjeta();
 			break;
 			case 3:
-			Salir();
+			Salir(TarjetaIntroducida);
 			break;
 		}
 	}while(a != 3);
