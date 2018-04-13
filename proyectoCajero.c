@@ -5,6 +5,7 @@
 
 int main(void)
 {
+	printf("Empezamos\n");
 	int a;
 
 	do 

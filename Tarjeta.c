@@ -70,12 +70,12 @@ void AltaTarjeta ()
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, fd);
  		
- 	/*	do
+ 		do
 		{
-	*/
-		printf("Registra el número de tu nueva tarjeta \n");
+	
+		printf("Registra el número de tu nueva tarjeta, no puede ser 0 \n");
 		scanf ("%i", &numeroTarjeta);
-	/*		
+			
 		aux = 0;
 
 
@@ -88,7 +88,7 @@ void AltaTarjeta ()
  				}
 			}
 		}while(aux = 1);
-*/
+
 	printf("Introduce el PIN para completar el registro de tu nueva tarjeta \n");
 	scanf ("%i", &PIN);
 	
@@ -103,7 +103,7 @@ void AltaTarjeta ()
 
 	fclose(fd);
 
-	//free(tarjetas);
+	free(tarjetas);
 }
 
  void IntroducirTarjeta()
