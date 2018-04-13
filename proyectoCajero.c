@@ -26,8 +26,7 @@ int main(void)
 			Salir();
 			break;
 		}
-
-	}while(a > 3 || a < 1);
+	}while(a != 3);
 
 return 0;
 }
