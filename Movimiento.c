@@ -49,7 +49,7 @@ void SacarDinero(t_tarjeta TarjetaIntroducida)
 	printf ("Ha retirado: %d€", importe);
 
 	(*movimientos).numTarjeta1 = TarjetaIntroducida.numTarjeta;
- 	(*movimientos).numTarjeta2 = NULL;
+ 	(*movimientos).numTarjeta2 = 0;
  	(*movimientos).TipoMovimiento[15] = TIPO1;
 	(*movimientos).Cantidad = importe;
 	
@@ -107,7 +107,7 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
  
 	(*movimientos).numTarjeta1 = TarjetaIntroducida.numTarjeta;
  	(*movimientos).TipoMovimiento[15] = TIPO2;
-	(*movimientos).numTarjeta2 = NULL;
+	(*movimientos).numTarjeta2 = 0;
 	(*movimientos).Cantidad = importe;
 	
 	fputc(MAX_NUM, FicheroMov);
