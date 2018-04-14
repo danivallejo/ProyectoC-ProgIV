@@ -100,6 +100,12 @@ void AltaTarjeta ()
  					printf("El número de tarjeta ya está registrado en el sistema \n");
  					aux = 1;
  				}
+ 				if(tarjeta.numTarjeta == 0)
+ 				{
+ 					printf("El número de tarjeta no puede ser 0 \n");
+ 					aux = 1;
+ 					break;
+ 				}
 			}
 		}while(aux == 1);
 
