@@ -143,7 +143,9 @@ void ConsultarMovimiento(t_tarjeta* TarjetaIntroducida)
 	FicheroMov = fopen("Movimientos.dat", "rb");
 
 	CantidadMovimientos = fgetc(FicheroMov);
-  
+  	
+	printf("%i", CantidadMovimientos);
+
   	//crear memoria para guardar los datos
  	 movimientos = (t_movimiento*)malloc(CantidadMovimientos*sizeof(t_movimiento));
   
