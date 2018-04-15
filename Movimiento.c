@@ -187,6 +187,7 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
   	//crear memoria para guardar los datos
  	tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
   
+  //PRUEBABABA
   	//leer los datos del binario al array
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
