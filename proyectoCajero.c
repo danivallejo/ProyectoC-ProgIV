@@ -29,7 +29,7 @@ int main(void)
 			IntroducirTarjeta();
 			break;
 			case 3:
-			Salir(TarjetaIntroducida);
+			Salir(&TarjetaIntroducida);
 			break;
 		}
 
@@ -63,3 +63,4 @@ int menu(void)
 }
 
 **/
+

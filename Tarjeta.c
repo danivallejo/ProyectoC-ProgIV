@@ -23,21 +23,21 @@ int menu(t_tarjeta TarjetaIntroducida)
 	switch(a)	
 	{
 	case 1:
-	SacarDinero(TarjetaIntroducida);
+	SacarDinero(&TarjetaIntroducida);
 	break;
 	case 2:
-	MeterDinero(TarjetaIntroducida);
+	MeterDinero(&TarjetaIntroducida);
 	break;
 	case 3:
-	ConsultarSaldo(TarjetaIntroducida);
+	ConsultarSaldo(&TarjetaIntroducida);
 	break;
 	case 4:
-	ConsultarMovimiento(TarjetaIntroducida);
+	ConsultarMovimiento(&TarjetaIntroducida);
 	break;
 	case 5:
-	Transferencia(TarjetaIntroducida);
+	Transferencia(&TarjetaIntroducida);
 	case 6:
-	Salir(TarjetaIntroducida);
+	Salir(&TarjetaIntroducida);
 	break;
 	}
 	}while(a!=6);
@@ -58,7 +58,7 @@ void AltaTarjeta ()
 
 	
 
--	FILE* fd;
+	FILE* fd;
 
 	fd = fopen("registro.dat", "rb");
 	 //leer la cantidad de elementos
@@ -203,16 +203,16 @@ void AltaTarjeta ()
     printf ("Lo sentimos, su tarjeta no aparece en nuestros servidores");
 }
 
-void ConsultarSaldo(t_tarjeta TarjetaIntroducida)
+void ConsultarSaldo(t_tarjeta* TarjetaIntroducida)
 {
 	int saldo;
 
-	saldo = TarjetaIntroducida.Saldo;
+	saldo = TarjetaIntroducida->Saldo;
 
 	printf ("Su saldo es de %i", saldo );
 
 }
-void Salir(t_tarjeta TarjetaIntroducida)
+void Salir(t_tarjeta* TarjetaIntroducida)
 {
 
 	FILE* FicheroTar;
@@ -233,9 +233,9 @@ void Salir(t_tarjeta TarjetaIntroducida)
  
 	for(int i = 0; i < CantidadTarjetas; i++)
 	{
-		if(TarjetaIntroducida.numTarjeta == tarjetas[i].numTarjeta)
+		if(TarjetaIntroducida->numTarjeta == tarjetas[i].numTarjeta)
 		{
-			tarjetas[i] = TarjetaIntroducida;
+			tarjetas[i] = *TarjetaIntroducida;
 		}
 	}
 

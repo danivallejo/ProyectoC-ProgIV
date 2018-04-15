@@ -13,7 +13,7 @@
 
 
 
-void SacarDinero(t_tarjeta TarjetaIntroducida) 
+void SacarDinero(t_tarjeta* TarjetaIntroducida) 
 {
 	FILE* FicheroMov;
 	FILE* FicheroTar;
@@ -40,16 +40,16 @@ void SacarDinero(t_tarjeta TarjetaIntroducida)
 
 		scanf("%i", &importe);
 
-		if( importe > TarjetaIntroducida.Saldo )
+		if( importe > TarjetaIntroducida->Saldo )
 		{
 			printf(" \n El importe que deseas sacar es mayor que el saldo disponible \n");
 		}
 
-	}while(importe > 1000||importe < 0 || importe > TarjetaIntroducida.Saldo);
+	}while(importe > 1000||importe < 0 || importe > TarjetaIntroducida->Saldo);
 
 	printf ("Ha retirado: %d€", importe);
 
-	movimientos[CantidadMovimientos].numTarjeta1 = TarjetaIntroducida.numTarjeta;
+	movimientos[CantidadMovimientos].numTarjeta1 = TarjetaIntroducida->numTarjeta;
  	movimientos[CantidadMovimientos].numTarjeta2 = 0;
  	movimientos[CantidadMovimientos].TipoMovimiento[15] = TIPO1;
 	movimientos[CantidadMovimientos].Cantidad = importe;
@@ -62,12 +62,12 @@ void SacarDinero(t_tarjeta TarjetaIntroducida)
 
 	fclose(FicheroMov);
 
-	TarjetaIntroducida.Saldo = TarjetaIntroducida.Saldo - importe;
+	TarjetaIntroducida->Saldo = TarjetaIntroducida->Saldo - importe;
 
 
 }
 
-void MeterDinero(t_tarjeta TarjetaIntroducida)
+void MeterDinero(t_tarjeta* TarjetaIntroducida)
 {
 	//LEEMOS DE FICHERO EN UN ARRAY
 
@@ -96,11 +96,11 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
  	scanf ("%i", &importe);
 
 	//crear memoria para guardar los datos de movimientos
- 	movimientos = (t_tarjeta*)malloc(100 * sizeof(t_movimiento));
+ 	movimientos = (t_movimiento*)malloc(100 * sizeof(t_movimiento));
 
  	//Modificamos el fichero
  
-	(*movimientos).numTarjeta1 = TarjetaIntroducida.numTarjeta;
+	(*movimientos).numTarjeta1 = TarjetaIntroducida->numTarjeta;
 
  	(*movimientos).TipoMovimiento[15] = TIPO2;
 
@@ -116,14 +116,14 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
 
 	for(int i = 0; i < CantidadTarjetas; i++)
 	{
-		if(TarjetaIntroducida.numTarjeta == tarjetas[i].numTarjeta)
+		if(TarjetaIntroducida->numTarjeta == tarjetas[i].numTarjeta)
 		{
-			TarjetaIntroducida.Saldo = TarjetaIntroducida.Saldo + importe;
-			tarjetas[i].Saldo = TarjetaIntroducida.Saldo;
+			TarjetaIntroducida->Saldo = TarjetaIntroducida->Saldo + importe;
+			tarjetas[i].Saldo = TarjetaIntroducida->Saldo;
 			printf("\n%d",tarjetas[i].Saldo);
 		}
 	}
-	printf("\n%d",TarjetaIntroducida.Saldo);
+	printf("\n%d",TarjetaIntroducida->Saldo);
 	fputc(CantidadTarjetas, FicheroTar);
 
 	fwrite (tarjetas, sizeof (t_tarjeta), CantidadTarjetas, FicheroTar);
@@ -132,7 +132,7 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
  
  
 }
-void ConsultarMovimiento(t_tarjeta TarjetaIntroducida)
+void ConsultarMovimiento(t_tarjeta* TarjetaIntroducida)
 {
 	FILE* FicheroMov;
 	int importe;
@@ -151,11 +151,11 @@ void ConsultarMovimiento(t_tarjeta TarjetaIntroducida)
   	fread(movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
   	if (CantidadMovimientos == 0)
   	{
-  		printf("No ha habido ningun movimiento con la tarjeta %i.\n",TarjetaIntroducida.numTarjeta);
+  		printf("No ha habido ningun movimiento con la tarjeta %i.\n",TarjetaIntroducida->numTarjeta);
   	}
   	for(i = 0; i < CantidadMovimientos; i++ )
   	{
-  		if(TarjetaIntroducida.numTarjeta == movimientos[i].numTarjeta1 || TarjetaIntroducida.numTarjeta == movimientos[i].numTarjeta2)
+  		if(TarjetaIntroducida->numTarjeta == movimientos[i].numTarjeta1 || TarjetaIntroducida->numTarjeta == movimientos[i].numTarjeta2)
   		{
   			printf("\n La tarjeta %i ha realizado un/a %s por el importe de %i \n", movimientos[i].numTarjeta1, movimientos[i].TipoMovimiento, movimientos[i].Cantidad);
   		}
@@ -165,7 +165,7 @@ void ConsultarMovimiento(t_tarjeta TarjetaIntroducida)
   	fclose(FicheroMov);
 }
 
-void Transferencia(t_tarjeta TarjetaIntroducida)
+void Transferencia(t_tarjeta* TarjetaIntroducida)
 {	
 	FILE* FicheroMov;
 	FILE* FicheroTar;
@@ -185,7 +185,7 @@ void Transferencia(t_tarjeta TarjetaIntroducida)
 	CantidadTarjetas = fgetc(FicheroTar);
   
   	//crear memoria para guardar los datos
- 	 tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
+ 	tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
   
   	//leer los datos del binario al array
  
@@ -193,16 +193,18 @@ void Transferencia(t_tarjeta TarjetaIntroducida)
 	
 	do
 	{
+		printf("Saldo actual de la tarjeta: %d\n",TarjetaIntroducida->Saldo);
 		printf("\nSeleccione el importe que desea transferir. \n");
 
 		scanf("%i", &importe);
+		printf("Asasdasdasd");
 
-		if( importe > TarjetaIntroducida.Saldo )
+		if( importe > TarjetaIntroducida->Saldo )
 		{
 			printf(" \n El importe que deseas trasnferir es mayor que el saldo disponible \n");
 		}
 
-	}while(importe > TarjetaIntroducida.Saldo);
+	}while(importe > TarjetaIntroducida->Saldo);
 
 	do
 	{
@@ -216,7 +218,7 @@ void Transferencia(t_tarjeta TarjetaIntroducida)
 			if(numTarjeta2 == tarjetas[i].numTarjeta)
 			{
 
-				(*movimientos).numTarjeta1 = TarjetaIntroducida.numTarjeta;
+				(*movimientos).numTarjeta1 = TarjetaIntroducida->numTarjeta;
  				(*movimientos).TipoMovimiento[15] = TIPO3;
 				(*movimientos).numTarjeta2 = numTarjeta2;
 				(*movimientos).Cantidad = importe;
@@ -231,7 +233,7 @@ void Transferencia(t_tarjeta TarjetaIntroducida)
 
 				for(x = 0; x < CantidadTarjetas; x++)
 				{
-					if(TarjetaIntroducida.numTarjeta == tarjetas[x].numTarjeta)
+					if(TarjetaIntroducida->numTarjeta == tarjetas[x].numTarjeta)
 					{
 						tarjetas[x].Saldo = tarjetas[x].Saldo - importe;
 
