@@ -78,9 +78,9 @@ void MeterDinero(t_tarjeta TarjetaIntroducida)
 	t_tarjeta* tarjetas;
 	t_movimiento *movimientos;
  
-	FicheroMov = fopen("Movimientos.dat", "ab");
+	FicheroMov = fopen("Movimientos.dat", "wb");
  
-	FicheroTar = fopen ("registro.dat", "r+b");
+	FicheroTar = fopen ("registro.dat", "rb");
 
 	CantidadTarjetas = fgetc(FicheroTar);
   
