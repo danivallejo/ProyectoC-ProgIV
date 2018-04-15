@@ -230,7 +230,12 @@ void Salir(t_tarjeta* TarjetaIntroducida)
   	//leer los datos del binario al array
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
- 
+
+ 	fclose(FicheroTar);
+ 	
+ 	FicheroTar = fopen ("registro.dat", "wb");
+
+
 	for(int i = 0; i < CantidadTarjetas; i++)
 	{
 		if(TarjetaIntroducida->numTarjeta == tarjetas[i].numTarjeta)

@@ -159,7 +159,6 @@ void ConsultarMovimiento(t_tarjeta* TarjetaIntroducida)
   		{
   			printf("\n La tarjeta %i ha realizado un/a %s por el importe de %i \n", movimientos[i].numTarjeta1, movimientos[i].TipoMovimiento, movimientos[i].Cantidad);
   		}
-
   	}
 
   	fclose(FicheroMov);
