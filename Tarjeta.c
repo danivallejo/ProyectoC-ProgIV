@@ -58,7 +58,7 @@ void AltaTarjeta ()
 
 	
 
-	FILE* fd;
+-	FILE* fd;
 
 	fd = fopen("registro.dat", "rb");
 	 //leer la cantidad de elementos
