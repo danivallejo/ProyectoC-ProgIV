@@ -229,33 +229,29 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 
 				fclose(FicheroMov);
 
-				tarjetas[i].Saldo = tarjetas[i].Saldo + importe;
+				TarjetaIntroducida->Saldo = TarjetaIntroducida->Saldo - importe;
 
 				for(x = 0; x < CantidadTarjetas; x++)
 				{
 					if(TarjetaIntroducida->numTarjeta == tarjetas[x].numTarjeta)
 					{
-						tarjetas[x].Saldo = tarjetas[x].Saldo - importe;
+						tarjetas[x].Saldo = tarjetas[x].Saldo + importe;
 
 						printf("\n La transferencia se ha realizado con éxito \n");
+						aux = 0;
 					}
 				}
-
 			}else
 			{
-				printf(" \n El número de la tarjeta que recibe la transferencia no existe en nuestros servidores\n");
-
 				aux = 1;
 			}
 		}
 
+		printf("%i", aux );
 		fputc(CantidadTarjetas, FicheroTar);
 
 		fwrite (tarjetas, sizeof (t_tarjeta), CantidadTarjetas, FicheroTar);
 
 		fclose (FicheroTar);
-
-	}while(aux = 1);
-
+	}while(aux == 1);
 }
-
