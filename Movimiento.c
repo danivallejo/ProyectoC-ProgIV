@@ -9,10 +9,6 @@
 #define TIPO2 "ingreso"
 #define TIPO3 "transferencia"
 
-#define MAX_NUM 1
-
-
-
 void SacarDinero(t_tarjeta* TarjetaIntroducida) 
 {
 	FILE* FicheroMov;
@@ -27,10 +23,7 @@ void SacarDinero(t_tarjeta* TarjetaIntroducida)
 
 	CantidadMovimientos = fgetc(FicheroMov);
 
- 	//crear memoria para guardar los datos
  	 movimientos = (t_movimiento*) malloc(100 * sizeof(t_movimiento));	
-  
-  	//leer los datos del binario al array
  
  	fread(movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
 
@@ -49,7 +42,7 @@ void SacarDinero(t_tarjeta* TarjetaIntroducida)
 
 	}while(importe > 1000||importe < 0 || importe > TarjetaIntroducida->Saldo);
 
-	printf ("Ha retirado: %d€", importe);
+	printf ("Ha retirado: %i€", importe);
 
 	FicheroMov = fopen("Movimientos.dat", "wb");
 
@@ -73,8 +66,6 @@ void SacarDinero(t_tarjeta* TarjetaIntroducida)
 
 void MeterDinero(t_tarjeta* TarjetaIntroducida)
 {
-	//LEEMOS DE FICHERO EN UN ARRAY
-
 	FILE* FicheroMov;
 	FILE* FicheroTar;
 	int importe;
@@ -87,33 +78,28 @@ void MeterDinero(t_tarjeta* TarjetaIntroducida)
 
 	CantidadMovimientos = fgetc(FicheroMov);
 
- 	//crear memoria para guardar los datos
  	 movimientos = (t_movimiento*) malloc(100 * sizeof(t_movimiento));	
-  
-  	//leer los datos del binario al array
  
  	fread(movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
 
  	fclose(FicheroMov);
  
+	
 	FicheroTar = fopen ("registro.dat", "rb");
 
 	CantidadTarjetas = fgetc(FicheroTar);
-  
-  	//crear memoria para guardar los datos de tarjetas
+
  	tarjetas = (t_tarjeta*)malloc(100 * sizeof(t_tarjeta));	
-  
-  	//leer los datos del binario al array
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
+
+ 	fclose (FicheroTar);
+
  
- 	printf("\n ¿Cuanto dinero desea ingresar? \n");
+ 	printf("\n Cuanto dinero desea ingresar? \n");
  
  	scanf ("%i", &importe);
 
-	//crear memoria para guardar los datos de movimientos
- 
- 	//Modificamos el fichero
 
  	FicheroMov = fopen("Movimientos.dat", "wb");
  
@@ -133,16 +119,16 @@ void MeterDinero(t_tarjeta* TarjetaIntroducida)
 
 	fclose(FicheroMov);
 
+	FicheroTar = fopen ("registro.dat", "wb");
+
 	for(int i = 0; i < CantidadTarjetas; i++)
 	{
 		if(TarjetaIntroducida->numTarjeta == tarjetas[i].numTarjeta)
 		{
 			TarjetaIntroducida->Saldo = TarjetaIntroducida->Saldo + importe;
 			tarjetas[i].Saldo = TarjetaIntroducida->Saldo;
-			printf("\n%d",tarjetas[i].Saldo);
 		}
 	}
-	printf("\n%d",TarjetaIntroducida->Saldo);
 	fputc(CantidadTarjetas, FicheroTar);
 
 	fwrite (tarjetas, sizeof (t_tarjeta), CantidadTarjetas, FicheroTar);
@@ -163,13 +149,10 @@ void ConsultarMovimiento(t_tarjeta* TarjetaIntroducida)
 
 	CantidadMovimientos = fgetc(FicheroMov);
   	
-	printf("%i", CantidadMovimientos);
-
-  	//crear memoria para guardar los datos
  	 movimientos = (t_movimiento*)malloc(CantidadMovimientos*sizeof(t_movimiento));
   
-  	//leer los datos del binario al array
   	fread(movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
+  	
   	if (CantidadMovimientos == 0)
   	{
   		printf("No ha habido ningun movimiento con la tarjeta %i.\n",TarjetaIntroducida->numTarjeta);
@@ -203,10 +186,7 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 
 	CantidadMovimientos = fgetc(FicheroMov);
 
- 	//crear memoria para guardar los datos
  	 movimientos = (t_movimiento*) malloc(100 * sizeof(t_movimiento));	
-  
-  	//leer los datos del binario al array
  
  	fread(movimientos, sizeof(t_movimiento), CantidadMovimientos, FicheroMov);
 
@@ -215,12 +195,8 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 	FicheroTar = fopen ("registro.dat", "rb");
 
 	CantidadTarjetas = fgetc(FicheroTar);
-  
-  	//crear memoria para guardar los datos
+
  	tarjetas = (t_tarjeta*)malloc(CantidadTarjetas * sizeof(t_tarjeta));	
-  
-  //PRUEBABABA
-  	//leer los datos del binario al array
  
  	fread(tarjetas, sizeof(t_tarjeta), CantidadTarjetas, FicheroTar);
 	
@@ -228,11 +204,10 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 
 	do
 	{
-		printf("Saldo actual de la tarjeta: %d\n",TarjetaIntroducida->Saldo);
+		printf("Saldo actual de la tarjeta: %i\n",TarjetaIntroducida->Saldo);
 		printf("\nSeleccione el importe que desea transferir. \n");
 
 		scanf("%i", &importe);
-		printf("Asasdasdasd");
 
 		if( importe > TarjetaIntroducida->Saldo )
 		{
@@ -278,7 +253,7 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 					{
 						tarjetas[x].Saldo = tarjetas[x].Saldo + importe;
 
-						printf("\n La transferencia se ha realizado con éxito \n");
+						printf("\n La transferencia se ha realizado con exito \n");
 						aux = 0;
 					}
 				}
@@ -287,8 +262,6 @@ void Transferencia(t_tarjeta* TarjetaIntroducida)
 				aux = 1;
 			}
 		}
-
-		printf("%i", aux );
 		fputc(CantidadTarjetas, FicheroTar);
 
 		fwrite (tarjetas, sizeof (t_tarjeta), CantidadTarjetas, FicheroTar);
